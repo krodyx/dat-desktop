@@ -56,7 +56,7 @@ function onReady () {
 
   mainWindow.showUrl(indexPath, () => {
     Menu.setApplicationMenu(Menu.buildFromTemplate(menu))
-    if (env.NODE_ENV === 'development') {
+    if (env.NODE_ENV !== 'production') {
       mainWindow.webContents.openDevTools({ mode: 'detach' })
     } else {
       autoUpdater({ log })
@@ -69,7 +69,7 @@ function onReady () {
 }
 
 app.on('ready', () => {
-  if (env.NODE_ENV === 'development') {
+  if (env.NODE_ENV !== 'production') {
     const browserify = require('./lib/browserify')
     const b = browserify({ watch: true })
     b.once('bundle', onReady)
