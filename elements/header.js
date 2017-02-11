@@ -77,6 +77,7 @@ function headerElement (props) {
   var importButton = datImport({ onsubmit: onimport })
 
   var createButton = button({
+    id: 'create-new-dat',
     icon: 'create-new-dat',
     text: 'Create New Dat',
     cls: 'ml2 b--transparent header-action header-action-no-border',

@@ -76,6 +76,7 @@ module.exports = (props, click) => {
 
   return html`
     <button
+      id=${props.id}
       onclick=${props.click}
       class="pointer ${prefix} ${props.style || ''} ${props.cls || ''}"
       title=${props.title || props.text}
