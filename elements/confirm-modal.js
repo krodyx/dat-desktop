@@ -47,7 +47,7 @@ function createWidget () {
     var deleteButton = button({
       text: 'Yes, Remove Dat',
       style: 'filled-green',
-      cls: 'fr ml3',
+      cls: 'fr ml3 confirm-button',
       click: ondelete
     })
 

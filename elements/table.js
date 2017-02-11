@@ -172,7 +172,7 @@ function row (dat, send) {
     text: 'Remove Dat',
     style: 'icon-only',
     icon: 'delete',
-    cls: 'row-action',
+    cls: 'delete row-action',
     click: function (e) {
       // TODO: we're relying on DOM ordering here. Fix this in choo by moving
       // to nanomorph; e.g. events are still copied over when reordering
