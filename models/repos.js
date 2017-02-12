@@ -26,6 +26,8 @@ function createModel () {
   const downloadsDir = (argv.data)
     ? argv.data
     : path.join(app.getPath('downloads'), '/dat')
+  const dbLocation = path.join(process.env.HOME, '.dat-desktop')
+  const dbFile = argv.db || path.join(dbLocation, 'dats.json')
 
   return {
     namespace: 'repos',
@@ -56,9 +58,6 @@ function createModel () {
 
   // boot multidat, create the ~/Downloads/dat directory
   function startMultidat (send, done) {
-    const dbLocation = path.join(process.env.HOME, '.dat-desktop')
-    const dbFile = path.join(dbLocation, 'dats.json')
-
     const tasks = [
       function (next) {
         mkdirp(dbLocation, next)
