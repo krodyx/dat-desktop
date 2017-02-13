@@ -216,7 +216,18 @@ function createManager (multidat, onupdate) {
 
     var stats = dat.trackStats()
     dat.metadata = dat.metadata || {}
-    dat.stats = stats
+    var getStats = stats.get
+    var _stats = {}
+    setTimeout(function () {
+      _stats = getStats.call(stats)
+    }, 1000)
+    var _getStats = throttle(function () {
+      _stats = getStats.call(stats)
+    }, 5000)
+    dat.stats.get = function () {
+      _getStats()
+      return _stats
+    }
 
     multidat.readManifest(dat, function (_, manifest) {
       if (!manifest) return
@@ -230,5 +241,19 @@ function createManager (multidat, onupdate) {
       update()
       peer.once('close', update)
     })
+  }
+}
+
+function throttle (cb, delay) {
+  delay = delay || 1000
+  var waiting = false
+
+  return function () {
+    if (waiting) return
+    waiting = true
+    setTimeout(function () {
+      cb()
+      waiting = false
+    }, delay)
   }
 }
