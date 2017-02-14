@@ -131,12 +131,20 @@ function createModel () {
   function removeDat (state, data, send, done) {
     assert.ok(data.key, 'repos-model.deleteDat: data.key should exist')
 
+    console.log('removing', data.confirmed)
     if (!data.confirmed) {
       const encodedKey = encoding.encode(data.key)
       send('location:set', `?delete=${encodedKey}`, done)
     } else {
       const key = encoding.decode(data.key)
-      manager.close(key, done)
+      console.log('closing')
+      send('location:set', '', function () {
+        manager.close(key, function (err) {
+          if (err) throw err
+          console.log('done called')
+          done()
+        })
+      })
     }
   }
 

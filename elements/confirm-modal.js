@@ -37,11 +37,13 @@ function createWidget () {
   return modal
 
   function onexit () {
+    console.log('onexit called')
     window.history.back()
   }
 
   function render (cb) {
     assert.equal(typeof cb, 'function', 'elements/confirm-modal: cb should be a function')
+    console.log('confirm modal')
 
     return html`
       <section class="relative flex flex-column justify-center ${prefix}">
@@ -76,6 +78,7 @@ function createWidget () {
       </section>
     `
     function ondelete () {
+      console.log('ondelete called')
       cb()
       onexit()
     }
