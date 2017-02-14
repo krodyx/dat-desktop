@@ -140,6 +140,7 @@ function EmptyState () {
         <img src="./public/img/dotted-lines.svg" alt="" class="dotted-lines">
         <div class="link">
           ${icon({
+            id: 'link',
             cls: 'color-blue-disabled'
           })}
           <h3 class="f4 ttu mt0 mb0 color-blue-disabled">Import Dat</h3>
