@@ -11,10 +11,11 @@ const assert = require('assert')
 const mkdirp = require('mkdirp')
 const open = require('open')
 const path = require('path')
-const mock = require('../tests/mocks')
 
 if (process.env.RUNNING_IN_SPECTRON) {
-  mock(dialog)
+  dialog.showOpenDialog = (opts, cb) => {
+    return [path.join(__dirname, '..', 'tests', 'fixtures')]
+  }
 }
 
 module.exports = createModel
